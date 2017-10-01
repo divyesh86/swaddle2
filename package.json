@@ -1,0 +1,28 @@
+{
+  "name": "swaddle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.7",
+    "plaid": "^2.0.5",
+    "react-router-dom": "^4.1.2",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.74.2",
+    "twilio": "^3.7.0"
+  },
+  "devDependencies": {
+    "semantic-ui": "^2.2.13",
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.12.1"
+  }
+}
