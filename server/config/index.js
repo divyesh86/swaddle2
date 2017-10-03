@@ -4,6 +4,10 @@ module.exports = {
     PLAID_SECRET : "31d69576685933df6ef151e7806b56",
     PLAID_PUBLIC_KEY : "be508262813de7f2a74af25ff88055",
     PLAID_ENV : "development",
-    ACCESS_TOKEN: "",
-    TIMEOUT: 60000
+    ACCESS_TOKEN : "",
+    TIMEOUT: 60000,
+    TWILIO_ACCOUNT_SID : "",
+    TWILIO_AUTH_TOKEN : "",
+    TWILIO_PHONE_NUMBER : ""
+
 }

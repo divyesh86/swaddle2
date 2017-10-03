@@ -3,15 +3,19 @@ let config = require('../config/index');
 let client = require('./client');
 let moment = require('moment');
 let utils = require('../utils');
+let twilio = require('twilio');
+let twilioClient = new twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
 
-let getTransactions = async function(noOfDays){
+
+
+let sendMessage = async (body, to) => {
     try{
 
-        let startDate = moment().subtract(noOfDays, 'days').format('YYYY-MM-DD');
-        let endDate = moment().format('YYYY-MM-DD');
-        return await client.getTransactions(config.ACCESS_TOKEN, startDate, endDate, {
-            count: 250,
-            offset: 0,
+
+        return await twilioClient.messages.create({
+            body: body,
+            to: to,
+            from: config.TWILIO_PHONE_NUMBER// From a valid Twilio number
         });
 
     }catch (err){
@@ -21,11 +25,10 @@ let getTransactions = async function(noOfDays){
 };
 
 
-let getAccounts = async function(){
+let createMessageBody = async (transaction) => {
     try{
 
-        let results =  await client.getAuth(config.ACCESS_TOKEN);
-        return results.accounts;
+        return utils.convert.toString(transaction.amount, transaction.name, transaction.address, transaction.city);
 
     }catch (err){
         return ({errorMsg: err.message});
@@ -35,4 +38,6 @@ let getAccounts = async function(){
 
 
 
-module.exports = {getTransactions, getAccounts};
+
+
+module.exports = {sendMessage, createMessageBody};

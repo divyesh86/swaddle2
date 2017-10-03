@@ -3,5 +3,6 @@ module.exports = {
     Transaction: require("./transaction/transaction"),
     Message: require("./message/message"),
     Feed: require("./feed/feed"),
-    Account: require("./account/account")
+    Account: require("./account/account"),
+    Updates: require("./updates/updates")
 };

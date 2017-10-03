@@ -3,5 +3,6 @@ module.exports = {
     feedController : require('./feedController'),
     messageController: require('./messageController'),
     transactionController: require('./transactionController'),
-    userController: require('./userController')
+    userController: require('./userController'),
+    updateController: require('./updateController')
 }

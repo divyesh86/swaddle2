@@ -12,26 +12,72 @@ let findAll = async () => {
 
 };
 
+let findByTransaction = async (transactionId) => {
+    try{
+        return await db.Transaction
+            .find({
+                $where: function () {
+                    return this.transactionId === transactionId
+                }
+            });
+    }catch(err){
+        return ({errorMsg: err.message})
+    }
+};
+
 let insertTransaction = async(transaction) => {
 
     try{
-        return await db.Feed
-            .create(
-                {
-                    amount: transaction.amount,
-                    name: transaction.name,
-                    pending: transaction.pending,
-                    date: transaction.date,
-                    address: utils.convert.jsonToString(transaction.location),
-                    notes: null
-                }
-            );
+
+        let result = await findByTransaction(transaction.transaction_id);
+
+        if(!result){
+            return await db.Transaction
+                .create(
+                    {
+                        transactionId: transaction.transaction_id,
+                        amount: transaction.amount,
+                        name: transaction.name,
+                        pending: transaction.pending,
+                        date: transaction.date,
+                        address: utils.convert.jsonToString(transaction.location),
+                        notes: null
+                    }
+                );
+        }
+
 
     }catch(err){
         return ({errorMsg: err.message})
     }
 };
 
+let updateTransaction = async(transaction) => {
+
+    try{
+
+        let result = await findByTransaction(transaction.transaction_id);
+
+        if(!result){
+            return await db.Transaction
+                .create(
+                    {
+                        transactionId: transaction.transaction_id,
+                        amount: transaction.amount,
+                        name: transaction.name,
+                        pending: transaction.pending,
+                        date: transaction.date,
+                        address: utils.convert.jsonToString(transaction.location),
+                        notes: null
+                    }
+                );
+        }
+
+
+    }catch(err){
+        return ({errorMsg: err.message})
+    }
+};
 
 let insertTransactionList = async(transactionList) => {
 
@@ -56,4 +102,7 @@ let fetchAndInsert = async(noOfDays) => {
 };
 
 
-module.exports = {fetchAndInsert, findAll};
+
+
+
+module.exports = {fetchAndInsert, findAll, insertTransaction};

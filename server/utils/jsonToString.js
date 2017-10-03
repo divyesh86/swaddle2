@@ -11,4 +11,15 @@ let jsonToString = (obj) => {
     return result.trim();
 };
 
-module.exports = {jsonToString};
+let toString = (... props) => {
+
+    let body = "";
+    props.forEach(prop => {
+        body += "\n" + prop;
+    });
+
+    return body;
+
+};
+
+module.exports = {jsonToString, toString};

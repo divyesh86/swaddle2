@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 const transactionSchema = new Schema({
     amount: { type: Number, required: true },
     name: { type: String, required: true },
+    transactionId: { type: String, required: true },
     accountId: { type: String, required: true },
     pending: {type: Booleand, default: false},
     userName: { type: String, required: true },
+    phoneNumber : {type: String, required: true},
     date: { type: Date, required: true },
     address: { type: String, required: true },
     city : { type: String, required: true },
